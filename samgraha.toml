@@ -1,0 +1,64 @@
+[repository]
+kind = "repository"
+dependencies = []
+id = "Pitha"
+name = "Pitha"
+uuid = "00aa1390-800b-470d-8885-ed8003f45716"
+source_exclude = []
+
+[repository.documentation]
+root_dir = "docs/raw"
+standard_system = "samgraha-documentation"
+domain = ["vision", "architecture", "engineering", "feature"]
+domain_exclusion = ["implementation"]
+
+[repository.documentation.script_overrides]
+
+[repository.documentation.check_overrides]
+
+[repository.ignore]
+patterns = [
+    "**/node_modules/**",
+    "**/target/**",
+    "**/.git/**",
+    "**/audit-standards/**",
+    "docs/error_list/**",
+]
+
+[repository.implementation]
+dir = "${SAMGRAHA_IMPLEMENTATION_DIR}"
+
+[compilation]
+watch = false
+debounce_ms = 100
+batch_size = 100
+
+[compilation.documentation]
+standards = []
+
+[resolver]
+metadata_cache = true
+metadata_ttl = "24h"
+knowledge_ttl = "720h"
+auto_refresh = true
+registry_type = "file"
+
+[knowledge]
+root = "system"
+dependencies = []
+interests = []
+
+[ai]
+
+[audit]
+default_severity = "suggestion"
+providers = ["deterministic"]
+
+[audit.gates]
+
+[output]
+format = "text"
+color = true
+
+[report]
+dir = "${SAMGRAHA_REPORT_DIR}"
