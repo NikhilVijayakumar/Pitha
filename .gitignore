@@ -25,3 +25,4 @@ target
 /.env
 /.samgraha/
 /docs/raw/proposal.md
+/docs/report/

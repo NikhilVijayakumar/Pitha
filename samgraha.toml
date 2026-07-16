@@ -12,9 +12,17 @@ standard_system = "samgraha-documentation"
 domain = ["vision", "architecture", "engineering", "feature"]
 domain_exclusion = ["implementation"]
 
-[repository.documentation.script_overrides]
+[repository.scripts]
+dir = "scripts"
 
 [repository.documentation.check_overrides]
+traceability-refs-exist = "scripts/traceability-refs-exist.ps1"
+feature-family-mapping = "scripts/feature-family-mapping.ps1"
+module-boundary-diff = "scripts/module-boundary-diff.ps1"
+crate-dependency-graph = "scripts/crate-dependency-graph.ps1"
+cargo-fmt = "scripts/cargo-fmt.ps1"
+lint-standards = "scripts/lint-standards.ps1"
+unsafe-code-scan = "scripts/unsafe-code-scan.ps1"
 
 [repository.ignore]
 patterns = [
