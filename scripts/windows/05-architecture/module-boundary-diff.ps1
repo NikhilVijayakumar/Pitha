@@ -11,7 +11,7 @@ function Write-Result($status, $evidence, $metrics) {
     $result = [ordered]@{
         repo_fingerprint = $RepoFingerprint
         check = "module-boundary-diff"
-        domain = "architecture"
+        domain = "05-architecture"
         category = "A"
         status = $status
         metrics = $metrics
@@ -64,7 +64,7 @@ if ($declaredModules.Count -eq 0) {
 }
 
 $actualModules = @()
-$excludeDirs = @("node_modules", ".git", "__pycache__", ".venv", "dist", "build", ".opencode", "vendor", ".samgraha", "scripts")
+$excludeDirs = @("node_modules", ".git", "__pycache__", ".venv", "dist", "build", ".opencode", "vendor")
 try {
     Get-ChildItem -Path $RepoRoot -Directory -ErrorAction Stop | ForEach-Object {
         $excluded = $false

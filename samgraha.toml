@@ -16,13 +16,13 @@ domain_exclusion = ["implementation"]
 dir = "scripts"
 
 [repository.documentation.check_overrides]
-traceability-refs-exist = "scripts/traceability-refs-exist.ps1"
-feature-family-mapping = "scripts/feature-family-mapping.ps1"
-module-boundary-diff = "scripts/module-boundary-diff.ps1"
-crate-dependency-graph = "scripts/crate-dependency-graph.ps1"
-cargo-fmt = "scripts/cargo-fmt.ps1"
-lint-standards = "scripts/lint-standards.ps1"
-unsafe-code-scan = "scripts/unsafe-code-scan.ps1"
+traceability-refs-exist = "scripts/windows/_generic/traceability-refs-exist.ps1"
+feature-family-mapping = "scripts/windows/_generic/feature-family-mapping.ps1"
+module-boundary-diff = "scripts/windows/05-architecture/module-boundary-diff.ps1"
+crate-dependency-graph = "scripts/windows/05-architecture/crate-dependency-graph.ps1"
+cargo-fmt = "scripts/windows/07-engineering/cargo-fmt.ps1"
+lint-standards = "scripts/windows/07-engineering/lint-standards.ps1"
+unsafe-code-scan = "scripts/windows/07-engineering/unsafe-code-scan.ps1"
 
 [repository.ignore]
 patterns = [

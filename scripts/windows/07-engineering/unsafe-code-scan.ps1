@@ -10,7 +10,7 @@ $executedAt = [DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ")
 function Write-Result($status, $evidence, $metrics) {
     $result = [ordered]@{
         check = "unsafe-code-scan"
-        domain = "engineering"
+        domain = "07-engineering"
         category = "A"
         status = $status
         metrics = $metrics

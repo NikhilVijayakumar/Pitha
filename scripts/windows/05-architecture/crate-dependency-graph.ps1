@@ -10,7 +10,7 @@ $executedAt = [DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ")
 function Write-Result($status, $evidence, $metrics) {
     $result = [ordered]@{
         check = "crate-dependency-graph"
-        domain = "architecture"
+        domain = "05-architecture"
         category = "A"
         status = $status
         metrics = $metrics

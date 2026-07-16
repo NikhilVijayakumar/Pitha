@@ -5,9 +5,8 @@ param(
     [Parameter(Mandatory=$true)] [string] $Out
 )
 
-# feature-family-mapping — Category C generic script
-# Checks that every feature document exists and has consistent naming.
-# Adapted for Pitha: feature docs are in docs/raw/feature/ without number prefixes.
+# feature-family-mapping - Category C generic script
+# Adapted for Pitha: feature docs in docs/raw/feature/ without number prefixes.
 
 $DocsRoot = Join-Path (Join-Path $RepoRoot "docs") "raw"
 
@@ -28,7 +27,6 @@ if (-not (Test-Path -LiteralPath $DocsRoot -PathType Container)) {
 
 $executedAt = [DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ")
 
-# Find feature documents in docs/raw/feature/
 $featureDir = Join-Path $DocsRoot "feature"
 $features = @{}
 $refsFound = 0
@@ -45,7 +43,6 @@ if (Test-Path -LiteralPath $featureDir -PathType Container) {
 
 $featuresCount = $features.Count
 
-# Check: every feature doc should have a Traceability section
 foreach ($name in $features.Keys) {
     $content = Get-Content -Path $features[$name] -Raw -ErrorAction SilentlyContinue
     if (-not $content) { continue }
@@ -58,7 +55,6 @@ foreach ($name in $features.Keys) {
         $evidence += "Feature '$name' is missing a Traceability section"
     }
 
-    # Check: every feature doc should have required sections
     $requiredSections = @("## Purpose", "## Scope")
     foreach ($section in $requiredSections) {
         if ($content -notmatch [regex]::Escape($section)) {
@@ -68,7 +64,6 @@ foreach ($name in $features.Keys) {
     }
 }
 
-# Determine status
 if ($featuresCount -eq 0) {
     $status = "not_applicable"
     $evidence = @("No feature documents found in docs-root/feature/")

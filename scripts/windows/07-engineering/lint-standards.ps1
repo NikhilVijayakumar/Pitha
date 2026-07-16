@@ -12,7 +12,7 @@ function Write-Result($status, $evidence, $metrics) {
     $result = [ordered]@{
         repo_fingerprint = $RepoFingerprint
         check = "lint-standards"
-        domain = "engineering"
+        domain = "07-engineering"
         category = "A"
         status = $status
         metrics = $metrics

@@ -5,10 +5,9 @@ param(
     [Parameter(Mandatory=$true)] [string] $Out
 )
 
-# traceability-refs-exist — Category C generic script
-# Checks that every document referenced in a domain's Traceability
-# section actually exists in docs-root.
-# Adapted for Pitha's text-diagram Traceability format.
+# traceability-refs-exist - Category C generic script
+# Adapted for Pitha: derives DocsRoot from RepoRoot (docs/raw),
+# parses text-diagram Traceability format (not table format).
 
 $DocsRoot = Join-Path (Join-Path $RepoRoot "docs") "raw"
 
@@ -34,7 +33,6 @@ $refsValid = 0
 $refsMissing = 0
 $evidence = @()
 
-# Collect all domain directory names under docs-root
 $domainDirs = @{}
 Get-ChildItem -Path $DocsRoot -Directory -ErrorAction SilentlyContinue | ForEach-Object {
     $domainDirs[$_.Name.ToLower()] = $_.FullName
@@ -51,7 +49,6 @@ foreach ($docfile in $mdFiles) {
     $domainsChecked++
     $docname = $docfile.BaseName
 
-    # Extract content between "## Traceability" and the next "##" heading
     $inTraceability = $false
     $traceabilityLines = @()
     foreach ($line in ($content -split "`n")) {
@@ -61,17 +58,12 @@ foreach ($docfile in $mdFiles) {
     }
     $traceabilityContent = $traceabilityLines -join "`n"
 
-    # Extract document names from text diagrams and prose
-    # Pattern 1: Lines with document names (capitalized words, possibly hyphenated)
-    # e.g. "Vision", "Architecture", "Feature", "Application Bootstrap", "Error-Handling"
     $namePattern = '(?m)^\s*([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*(?:-[A-Z][a-zA-Z]+)*)\s*$'
     $nameMatches = [regex]::Matches($traceabilityContent, $namePattern)
 
-    # Pattern 2: Arrow references like "──► Document Name"
-    $arrowPattern = '──►\s*([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*(?:-[A-Z][a-zA-Z]+)*)'
+    $arrowPattern = '---[>]?\s*([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*(?:-[A-Z][a-zA-Z]+)*)'
     $arrowMatches = [regex]::Matches($traceabilityContent, $arrowPattern)
 
-    # Pattern 3: Inline references like "from the Vision" or "Architecture defines"
     $inlinePattern = '(?:from|to|in|of|derives?\s+from|references?)\s+(?:the\s+)?([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*)'
     $inlineMatches = [regex]::Matches($traceabilityContent, $inlinePattern)
 
@@ -80,18 +72,13 @@ foreach ($docfile in $mdFiles) {
     foreach ($m in $arrowMatches) { $allRefs += $m.Groups[1].Value }
     foreach ($m in $inlineMatches) { $allRefs += $m.Groups[1].Value }
 
-    # Deduplicate
     $allRefs = $allRefs | Select-Object -Unique
 
-    # Normalize names to directory/file patterns for matching
     foreach ($ref in $allRefs) {
         $refsFound++
         $normalized = $ref.ToLower() -replace '\s+', '-' -replace '[^a-z0-9\-]', ''
 
-        # Check if any domain directory or file matches
         $found = $false
-
-        # Check domain directories
         foreach ($dirName in $domainDirs.Keys) {
             if ($dirName -eq $normalized -or $dirName -replace '-', '' -eq $normalized -replace '-', '') {
                 $found = $true
@@ -99,7 +86,6 @@ foreach ($docfile in $mdFiles) {
             }
         }
 
-        # Check files across all directories
         if (-not $found) {
             $allFiles = Get-ChildItem -Path $DocsRoot -Filter "*.md" -File -Recurse -ErrorAction SilentlyContinue
             foreach ($f in $allFiles) {
@@ -120,7 +106,6 @@ foreach ($docfile in $mdFiles) {
     }
 }
 
-# Determine status
 if ($domainsChecked -eq 0) {
     $status = "not_applicable"
     $evidence = @("No domains with Traceability sections found in docs-root")
