@@ -6,13 +6,11 @@
 
 ---
 
-## V-001 [Moderate] "Vision" heading doesn't match required "Vision Statement" type
+## V-001 [RETRACTED] "Vision" heading does not need to change
 
-**Location:** line 15, `## Vision`
+Original claim: rename `## Vision` → `## Vision Statement`. **This was wrong and has been reverted.** Live-tested it: renaming to "Vision Statement" caused `compile` to emit a new `Missing required section 'Vision' (type: vision_statement)` diagnostic that didn't exist before — proving the compiler's canonical heading for this semantic type is literally **"Vision"**, not "Vision Statement". The original heading was already correct. Score before and after the (reverted) rename was identical, 74.35%, confirming this heading was never the actual gap.
 
-**Problem:** The vision standard requires a section mapping to semantic type `vision_statement`, canonical heading "Vision Statement". The doc uses `## Vision` instead — confirmed by live audit (`vis-sec-vs-001`/`002`, Error) and by direct read (no "Vision Statement" heading exists in the file).
-
-**Fix:** Rename `## Vision` (line 15) → `## Vision Statement`. Content is fine as-is.
+**Real state:** Vision is at 74.35%, not 100% as reported elsewhere. The gap is driven by `vis-sec-problem-002`, `vis-sec-solution-004`, `vis-sec-ta-002`, `vis-sec-vs-002` (Error severity, content-phrasing checks like "states the problem clearly" / "identifies who the product serves"). Not independently re-verified this session whether these are real content gaps or check-log noise (see CC-001) — flag as unconfirmed rather than actionable until someone reads the Problem/Solution/Target Audience sections against the specific check wording.
 
 ---
 

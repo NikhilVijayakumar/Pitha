@@ -1,0 +1,14 @@
+[package]
+name = "pitha-storage-fs"
+description = "Filesystem storage implementation for the Pīṭha platform"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+pitha-core.workspace = true
+pitha-storage-core.workspace = true
+async-trait = "0.1"
+bytes = "1"
+tokio.workspace = true

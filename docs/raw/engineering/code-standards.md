@@ -10,6 +10,34 @@ These standards apply to all production code unless explicitly documented otherw
 
 ---
 
+## Code Standards
+
+Platform code follows consistent standards that ensure readability, maintainability, and alignment with the engineering philosophy.
+
+### Style Guide
+
+All modules follow the Rust API Guidelines. Functions use verb-noun conventions. Files are named after the module they contain. Code prioritizes clarity over cleverness.
+
+### Linting Configuration
+
+Static analysis uses workspace-wide standards: Rust compiler warnings, Clippy, and rustfmt. Warnings are treated as engineering issues. Intentional exceptions require documented justification.
+
+### Naming Conventions
+
+| Element | Convention |
+|----------|------------|
+| Crates | kebab-case |
+| Modules | snake_case |
+| Files | snake_case |
+| Functions | snake_case |
+| Types | PascalCase |
+| Traits | PascalCase |
+| Constants | SCREAMING_SNAKE_CASE |
+
+Names describe intent rather than implementation.
+
+---
+
 ## Coding Principles
 
 The following principles guide all implementation decisions.

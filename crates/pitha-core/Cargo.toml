@@ -1,0 +1,11 @@
+[package]
+name = "pitha-core"
+description = "Shared platform primitives for the Pīṭha engineering platform"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+thiserror.workspace = true
+serde.workspace = true

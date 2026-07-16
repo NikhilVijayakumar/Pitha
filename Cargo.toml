@@ -1,0 +1,35 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/pitha-core",
+    "crates/pitha-foundation",
+    "crates/pitha-storage-core",
+    "crates/pitha-storage-fs",
+    "crates/pitha-testing",
+    "crates/pitha-runtime-cli",
+    "crates/pitha-runtime-mcp",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/pitha-platform/pitha"
+description = "Reusable Rust engineering platform"
+
+[workspace.dependencies]
+pitha-core = { path = "crates/pitha-core" }
+pitha-foundation = { path = "crates/pitha-foundation" }
+pitha-storage-core = { path = "crates/pitha-storage-core" }
+pitha-storage-fs = { path = "crates/pitha-storage-fs" }
+pitha-testing = { path = "crates/pitha-testing" }
+thiserror = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.8"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+async-trait = "0.1"
+bytes = "1"
+tokio = { version = "1", features = ["full"] }

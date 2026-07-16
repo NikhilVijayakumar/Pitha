@@ -14,11 +14,17 @@ Pīṭha is the engineering foundation upon which Rust applications are built—
 
 ## Vision
 
-Pīṭha aims to become the standard engineering platform for Rust applications by providing a reusable foundation of engineering capabilities that can be composed across projects.
+Pīṭha's aspiration is to become the standard engineering platform for Rust applications by providing a reusable foundation of engineering capabilities that can be composed across projects.
 
 Rather than treating application infrastructure as project-specific code, Pīṭha treats it as a shared platform capability. Applications compose only the capabilities they require while remaining completely independent in their business logic, workflows, and domain models.
 
 By standardizing engineering infrastructure once, Pīṭha enables engineering teams to build applications that are easier to understand, maintain, test, audit, and evolve throughout their lifecycle.
+
+---
+
+## Philosophy
+
+Pīṭha's design ideology centers on the belief that engineering infrastructure is a platform concern, not an application concern. The platform exists to eliminate repeated effort, enforce consistency, and enable applications to focus exclusively on business value.
 
 ---
 
@@ -36,7 +42,7 @@ Engineering teams repeatedly invest significant effort implementing infrastructu
 - Storage abstractions
 - Testing infrastructure
 
-Although necessary, these capabilities rarely differentiate the application itself.
+Although necessary, these capabilities rarely differentiate the application itself. The lack of a shared engineering foundation means each project must solve the same infrastructure problems independently.
 
 This repeated implementation results in:
 
@@ -59,13 +65,13 @@ Each platform capability owns a single engineering responsibility and can be com
 
 Applications remain responsible only for business capabilities while Pīṭha provides reusable engineering infrastructure.
 
-Testing is treated as a first-class engineering capability that produces standardized engineering evidence suitable for quality gates, auditing systems, documentation pipelines, and future engineering automation.
+Testing is treated as a first-class engineering capability that produces standardized engineering evidence suitable for quality gates, auditing systems, documentation workflows, and future engineering automation.
 
 ---
 
 ## Target Audience
 
-Pīṭha is intended for:
+Pīṭha is intended for the following audience segments:
 
 - Engineering teams building multiple Rust applications
 - Platform engineering organizations
@@ -207,11 +213,13 @@ Tier 0 — Vision
         └──► Tier 3 — Implementation
 ```
 
-Every downstream document derives from the Vision.
+Every downstream document derives from the Vision. The Vision is traceable to no upstream origin as it is the root of the documentation hierarchy.
 
 - **Architecture** defines the structural organization of the platform.
 - **Features** define the engineering capabilities provided by the platform.
 - **Engineering** defines the implementation standards used to realize those capabilities.
 - **Implementation** records the concrete realization of the platform.
+
+Each downstream consumer of the Vision inherits its goals, priorities, and constraints.
 
 **Non-contradiction rule:** No downstream document may introduce goals, responsibilities, priorities, or constraints that contradict this Vision. When conflicts arise, the Vision is the authoritative source.

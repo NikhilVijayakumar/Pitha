@@ -1,0 +1,11 @@
+[package]
+name = "pitha-testing"
+description = "Reusable testing infrastructure for the Pīṭha platform"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+pitha-core.workspace = true
+serde_json.workspace = true

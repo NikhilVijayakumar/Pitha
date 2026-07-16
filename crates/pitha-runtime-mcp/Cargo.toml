@@ -1,0 +1,12 @@
+[package]
+name = "pitha-runtime-mcp"
+description = "MCP runtime for the Pīṭha platform"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+pitha-core.workspace = true
+pitha-foundation.workspace = true
+tokio.workspace = true

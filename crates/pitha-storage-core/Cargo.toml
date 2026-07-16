@@ -1,0 +1,13 @@
+[package]
+name = "pitha-storage-core"
+description = "Storage contracts for the Pīṭha platform"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+pitha-core.workspace = true
+thiserror.workspace = true
+async-trait = "0.1"
+bytes = "1"
